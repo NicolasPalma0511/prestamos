@@ -1,52 +1,63 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+    <!-- Título del Formulario -->
+    <h2 style="font-size: 1.875rem; font-weight: bold; color: #1E3A8A; text-align: center; margin-bottom: 1.5rem;">
+        {{ __('Registro') }}
+    </h2>
+
+    <form method="POST" action="{{ route('register') }}" 
+          style="background-color: #E5E7EB; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); width: 24rem; margin: 0 auto;">
         @csrf
 
         <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            <label for="name" style="color: #1E3A8A; font-weight: bold;">{{ __('Nombre') }}</label>
+            <input id="name" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" 
+                   style="display: block; margin-top: 0.25rem; width: 100%; padding: 0.5rem; border: 1px solid #D1D5DB; border-radius: 0.375rem;" />
+            @error('name')
+            <span style="color: #EF4444; font-size: 0.875rem;">{{ $message }}</span>
+            @enderror
         </div>
 
         <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <div style="margin-top: 1rem;">
+            <label for="email" style="color: #1E3A8A; font-weight: bold;">{{ __('Correo electrónico') }}</label>
+            <input id="email" type="email" name="email" :value="old('email')" required autocomplete="username" 
+                   style="display: block; margin-top: 0.25rem; width: 100%; padding: 0.5rem; border: 1px solid #D1D5DB; border-radius: 0.375rem;" />
+            @error('email')
+            <span style="color: #EF4444; font-size: 0.875rem;">{{ $message }}</span>
+            @enderror
         </div>
 
         <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <div style="margin-top: 1rem;">
+            <label for="password" style="color: #1E3A8A; font-weight: bold;">{{ __('Contraseña') }}</label>
+            <input id="password" type="password" name="password" required autocomplete="new-password" 
+                   style="display: block; margin-top: 0.25rem; width: 100%; padding: 0.5rem; border: 1px solid #D1D5DB; border-radius: 0.375rem;" />
+            @error('password')
+            <span style="color: #EF4444; font-size: 0.875rem;">{{ $message }}</span>
+            @enderror
         </div>
 
         <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        <div style="margin-top: 1rem;">
+            <label for="password_confirmation" style="color: #1E3A8A; font-weight: bold;">{{ __('Confirmar contraseña') }}</label>
+            <input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password" 
+                   style="display: block; margin-top: 0.25rem; width: 100%; padding: 0.5rem; border: 1px solid #D1D5DB; border-radius: 0.375rem;" />
+            @error('password_confirmation')
+            <span style="color: #EF4444; font-size: 0.875rem;">{{ $message }}</span>
+            @enderror
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
+        <!-- Botones -->
+        <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+            <a href="{{ route('login') }}" 
+               style="color: #2563EB; font-size: 0.875rem; text-decoration: underline;">
+                {{ __('¿Ya estás registrado?') }}
             </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
+            <button type="submit" 
+                    style="background-color: #1E3A8A; color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;">
+                {{ __('Registrar') }}
+            </button>
         </div>
     </form>
 </x-guest-layout>
